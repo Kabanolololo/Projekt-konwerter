@@ -16,11 +16,12 @@ if os.path.exists(a):
             print("Wybrałeś plik XML.")
 # KONWERTER JEST NIEGOTOWY - SPRAWDZA JEDYNIE POPRAWNOŚĆ KODU YML
         elif rozszerzenie.lower() == '.yml':
-            print("Wybrałeś plik YAML.")
+            print("Wybrałeś plik YAML.") #usuń ta linijke pozniej
             try:
                 with open(a, 'r') as plik:
                     yaml.load(plik, Loader=yaml.FullLoader)
                 print("Poprawna składnia pliku YAML.")
+                #dodaj tutaj dalszą część kodu, która sprawdza czy to jest xml czy json
             except yaml.YAMLError as blad:
                 print("Błąd składni pliku YAML:\n",blad)
 # KONWERTER Z JSON DO XML ORAZ YAML JEST JUŻ GOTOWY
