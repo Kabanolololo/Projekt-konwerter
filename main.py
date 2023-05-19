@@ -5,10 +5,7 @@ import dicttoxml
 
 print("Konwerter xml, json, yml")
 a = input("Podaj nazwę pliku (Przykład: nazwa_pliku.xml): ")
-
 a = os.path.abspath(a)
-
-#warunki sprawdzające poprawność wybranych rozszerzeń
 
 if os.path.exists(a):
     if not os.path.isfile(a):
@@ -17,8 +14,15 @@ if os.path.exists(a):
         nazwa_pliku, rozszerzenie = os.path.splitext(a)
         if rozszerzenie.lower() == '.xml':
             print("Wybrałeś plik XML.")
+# KONWERTER JEST NIEGOTOWY - SPRAWDZA JEDYNIE POPRAWNOŚĆ KODU YML
         elif rozszerzenie.lower() == '.yml':
             print("Wybrałeś plik YAML.")
+            try:
+                with open(a, 'r') as plik:
+                    yaml.load(plik, Loader=yaml.FullLoader)
+                print("Poprawna składnia pliku YAML.")
+            except yaml.YAMLError as blad:
+                print("Błąd składni pliku YAML:",blad)
 # KONWERTER Z JSON DO XML ORAZ YAML JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.json':
             try:
@@ -37,7 +41,6 @@ if os.path.exists(a):
                     with open(xml_file, 'w') as plik_xml:
                         plik_xml.write(xml_data.decode())
                     print(f"Plik JSON został przekonwertowany na XML i zapisany jako {xml_file}.")
-#Jeśli mamy błąd w składni jsona, wyrzuci nam w której linicje, ale kod dalej się nie wykona
             except json.JSONDecodeError as blad:
                 print("Błąd w składni pliku JSON:\n",blad)
         else:
