@@ -22,7 +22,7 @@ if os.path.exists(a):
                     yaml.load(plik, Loader=yaml.FullLoader)
                 print("Poprawna składnia pliku YAML.")
             except yaml.YAMLError as blad:
-                print("Błąd składni pliku YAML:",blad)
+                print("Błąd składni pliku YAML:\n",blad)
 # KONWERTER Z JSON DO XML ORAZ YAML JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.json':
             try:
