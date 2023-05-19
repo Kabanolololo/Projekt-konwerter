@@ -1,11 +1,12 @@
 import os
+import json
 
 print("Konwerter xml, json, yml")
 a = input("Podaj nazwę pliku (Przykład: nazwa_pliku.xml): ")
 
 a = os.path.abspath(a)
 
-#warunki sprawdzające poprawność kodu
+#warunki sprawdzające poprawność wybranych rozszerzeń
 
 if os.path.exists(a):
     if not os.path.isfile(a):
@@ -17,7 +18,12 @@ if os.path.exists(a):
         elif rozszerzenie.lower() == '.yml':
             print("Wybrałeś plik YAML.")
         elif rozszerzenie.lower() == '.json':
-            print("Wybrałeś plik JSON.")
+            try:
+                with open(a) as plik:
+                    info = json.load(plik)
+                print("Składnia pliku z rozszerzeniem JSON jest poprawna.")
+            except json.JSONDecodeError as blad:
+                print("Błąd w składni pliku JSON:\n",blad)
         else:
             print("Nieobsługiwany format pliku.")
 else:
