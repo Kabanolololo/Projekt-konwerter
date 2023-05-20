@@ -14,16 +14,26 @@ if os.path.exists(a):
         nazwa_pliku, rozszerzenie = os.path.splitext(a)
         if rozszerzenie.lower() == '.xml':
             print("Wybrałeś plik XML.")
-# KONWERTER JEST NIEGOTOWY - SPRAWDZA JEDYNIE POPRAWNOŚĆ KODU YML
+# KONWERTER Z YML DO XML ORAZ JSON JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.yml':
-            print("Wybrałeś plik YAML.") #usuń ta linijke pozniej
             try:
-                with open(a, 'r') as plik:
-                    yaml.load(plik, Loader=yaml.FullLoader)
-                print("Poprawna składnia pliku YAML.")
-                #dodaj tutaj dalszą część kodu, która sprawdza czy to jest xml czy json
+                with open(a) as plik:
+                    info = yaml.safe_load(plik)
+                print("Składnia pliku z rozszerzeniem YAML jest poprawna.")
+                b = input("Podaj rozszerzenie pliku, na które mam przekonwertować (json, xml): ")
+                if b == 'json':
+                    json_file = f"{nazwa_pliku}.json"
+                    with open(json_file, 'w') as plik_json:
+                        json.dump(info, plik_json)
+                    print(f"Plik YAML został przekonwertowany na JSON i zapisany jako {json_file}.")
+                elif b == 'xml':
+                    xml_file = f"{nazwa_pliku}.xml"
+                    xml_data = dicttoxml.dicttoxml(info)
+                    with open(xml_file, 'w') as plik_xml:
+                        plik_xml.write(xml_data.decode())
+                    print(f"Plik YAML został przekonwertowany na XML i zapisany jako {xml_file}.")
             except yaml.YAMLError as blad:
-                print("Błąd składni pliku YAML:\n",blad)
+                print("Błąd w składni pliku YAML:\n", blad)
 # KONWERTER Z JSON DO XML ORAZ YAML JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.json':
             try:
@@ -48,3 +58,5 @@ if os.path.exists(a):
             print("Nieobsługiwany format pliku.")
 else:
     print("Podana ścieżka pliku nie istnieje.")
+
+
