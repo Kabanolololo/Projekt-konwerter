@@ -18,14 +18,15 @@ jobs:
 
     - name: Skonfiguruj środowisko
       run: ./instalator.ps1
-
+      
+    - name: Przejście do dwóch folderów wyżej
+      run: cd ../..
+      
     - name: Budowanie pliku .exe
-      run: |
-        ./
-        pyinstaller --noconsole --onefile main.py
+      run: pyinstaller --noconsole --onefile main.py
 
     - name: Przesyłanie pliku .exe
       uses: actions/upload-artifact@v3
       with:
         name: Wygenerowany plik .exe
-        path: ./main.exe
+        path: main.exe
