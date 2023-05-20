@@ -15,7 +15,6 @@ if os.path.exists(a):
         if rozszerzenie.lower() == '.xml':
             print("Wybrałeś plik XML.") #usuń to potem
             try:
-                import xml.etree.ElementTree as ET
                 tree = ET.parse(a)
                 print("Poprawna składnia pliku XML.")
                 # Dodaj tutaj dalszą część kodu
