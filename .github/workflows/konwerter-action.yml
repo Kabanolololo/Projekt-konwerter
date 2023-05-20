@@ -21,10 +21,11 @@ jobs:
 
     - name: Budowanie pliku .exe
       run: |
-        # Twoje polecenia budowania pliku .exe
+        ./
+        pyinstaller --noconsole --onefile main.py
 
     - name: Przesyłanie pliku .exe
       uses: actions/upload-artifact@v3
       with:
         name: Wygenerowany plik .exe
-        path: <ścieżka_do_wygenerowanego_pliku>.ex
+        path: ./main.exe
