@@ -14,6 +14,12 @@ if os.path.exists(a):
         nazwa_pliku, rozszerzenie = os.path.splitext(a)
         if rozszerzenie.lower() == '.xml':
             print("Wybrałeś plik XML.") #usuń to potem
+            try:
+                tree = ET.parse(a)
+                print("Poprawna składnia pliku XML.")
+                # Dodaj tutaj dalszą część kodu
+            except ET.ParseError as error:
+                print("Błąd składni pliku XML:\n", error)
 # KONWERTER Z YML DO XML ORAZ JSON JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.yml':
             try:
