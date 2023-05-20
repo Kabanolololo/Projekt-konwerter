@@ -1,0 +1,34 @@
+name: konwerter.exe
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Automatyczne wykonanie raz w tygodniu
+  push:
+    branches:
+      - master  # Automatyczne wykonanie po pushowaniu do mastera
+  workflow_dispatch:  # Wywołanie ręczne przez użytkownika
+
+jobs:
+  build:
+    runs-on: windows-latest  # Ustawienie domyślnego serwera Windows
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'  # Wersja Pythona, którą chcesz używać
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Zainstalowanie potrzebnych zależności
+
+      - name: Build .exe
+        run: |
+          python build.py  # Polecenie do budowania pliku .exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: konwerter
+          path: main.exe\main.exe
