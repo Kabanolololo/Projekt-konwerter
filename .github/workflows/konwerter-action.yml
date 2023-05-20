@@ -1,4 +1,4 @@
-name: konwerter
+name: KONWERTER-XML-JSON-YML
 
 on:
   push:
@@ -28,5 +28,5 @@ jobs:
     - name: Przesyłanie pliku .exe
       uses: actions/upload-artifact@v3
       with:
-        name: Wygenerowany plik .exe
+        name: KONWERTER-XML-JSON-YML
         path: main.exe
