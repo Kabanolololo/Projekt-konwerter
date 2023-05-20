@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Skonfiguruj środowisko
-      run: instalator.ps1
+      run: \instalator.ps1
 
     - name: Budowanie pliku .exe
       run: |
