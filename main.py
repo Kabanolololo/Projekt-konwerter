@@ -2,7 +2,7 @@ import os
 import json
 import yaml
 import dicttoxml
-
+import xml.etree.cElementTree as ET
 print("Konwerter xml, json, yml")
 a = input("Podaj nazwę pliku (Przykład: nazwa_pliku.xml): ")
 a = os.path.abspath(a)
@@ -13,7 +13,14 @@ if os.path.exists(a):
     else:
         nazwa_pliku, rozszerzenie = os.path.splitext(a)
         if rozszerzenie.lower() == '.xml':
-            print("Wybrałeś plik XML.")
+            print("Wybrałeś plik XML.") #usuń to potem
+            try:
+                import xml.etree.ElementTree as ET
+                tree = ET.parse(a)
+                print("Poprawna składnia pliku XML.")
+                # Dodaj tutaj dalszą część kodu
+            except ET.ParseError as error:
+                print("Błąd składni pliku XML:\n", error)
 # KONWERTER Z YML DO XML ORAZ JSON JEST JUŻ GOTOWY
         elif rozszerzenie.lower() == '.yml':
             try:
