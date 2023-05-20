@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Skonfiguruj środowisko
-      run: /instalator.ps1
+      run: instalator.ps1
 
     - name: Budowanie pliku .exe
       run: |
@@ -27,4 +27,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Wygenerowany plik .exe
-        path: <ścieżka_do_wygenerowanego_pliku>.exe
+        path: <ścieżka_do_wygenerowanego_pliku>.ex
